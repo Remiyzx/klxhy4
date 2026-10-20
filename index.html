@@ -17,6 +17,13 @@
             --topbar-hover: #312e81;      
             --bg-color: #fcfaff;          
             --text-color: #1e1b4b;        
+
+            /* Syntax Colors */
+            --syn-subj: #2563eb;
+            --syn-time: #9333ea;
+            --syn-place: #059669;
+            --syn-verb: #d97706;
+            --syn-obj: #e11d48;
         }
         
         body {
@@ -138,11 +145,12 @@
         .full-response-tag { display: block; margin-top: 4px; font-size: 1.1rem; color: #4c1d95; background: #f3e8ff; padding: 3px 10px; border-radius: 6px; font-weight: bold; width: fit-content; }
         .tone-reminder-badge { display: inline-block; background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; padding: 2px 10px; border-radius: 6px; font-size: 0.95rem; font-weight: bold; margin-top: 4px; width: fit-content; }
 
-        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 25px 0; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 25px 0; }
         .vocab-card { background: #faf5ff; border: 3px solid #e9d5ff; border-radius: 14px; padding: 18px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .vocab-icon { font-size: 2.6rem; line-height: 1; }
         .vocab-pinyin { font-size: 1.45rem; font-weight: bold; color: var(--primary-dark); }
         .vocab-english { font-size: 1.1rem; color: #4b5563; }
+        .vocab-morph { font-size: 0.95rem; color: #6b21a8; background: #f3e8ff; padding: 3px 8px; border-radius: 6px; font-weight: 600; line-height: 1.3; }
 
         .svo-container { display: flex; flex-direction: column; gap: 15px; margin: 25px 0; background: #faf5ff; padding: 25px; border-radius: 16px; border: 3px dashed #d8b4fe; }
         .svo-row-1 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
@@ -151,6 +159,20 @@
         .svo-card.verb { background: linear-gradient(135deg, #d97706, #f59e0b); font-size: 2.1rem; }
         .svo-card.object { background: linear-gradient(135deg, #059669, #10b981); font-size: 2.1rem; }
         .svo-row-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; font-size: 1.6rem; font-weight: bold; color: var(--primary-dark); }
+
+        /* Color-Coded Syntax Table */
+        .syntax-table th.s-subj { background: #dbeafe; color: var(--syn-subj); border-color: #bfdbfe; }
+        .syntax-table th.s-time { background: #f3e8ff; color: var(--syn-time); border-color: #e9d5ff; }
+        .syntax-table th.s-place { background: #d1fae5; color: var(--syn-place); border-color: #a7f3d0; }
+        .syntax-table th.s-verb { background: #fef3c7; color: var(--syn-verb); border-color: #fde68a; }
+        .syntax-table th.s-obj { background: #ffe4e6; color: var(--syn-obj); border-color: #fecdd3; }
+        
+        .syntax-pill { font-weight: bold; padding: 4px 10px; border-radius: 6px; display: inline-block; }
+        .p-subj { color: var(--syn-subj); background: #eff6ff; }
+        .p-time { color: var(--syn-time); background: #faf5ff; }
+        .p-place { color: var(--syn-place); background: #ecfdf5; }
+        .p-verb { color: var(--syn-verb); background: #fffbeb; }
+        .p-obj { color: var(--syn-obj); background: #fff1f2; }
 
         .interactive-q-item { background: #faf5ff; border: 3px solid #e9d5ff; border-radius: 12px; padding: 20px 25px; margin-bottom: 20px; }
         .q-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -185,7 +207,7 @@
         </div>
         <div class="menu-row">
             <button class="menu-btn" onclick="showSection('food-drinks', this)">Foods & Drinks</button>
-            <button class="menu-btn" onclick="showSection('preferences', this)">Preferences & Verbs</button>
+            <button class="menu-btn" onclick="showSection('preferences', this)">Preferences & Place Order</button>
             <button class="menu-btn" onclick="showSection('roleplays', this)">Roleplay Scenarios</button>
             <button class="menu-btn" onclick="showSection('exercises', this)">Interactive Exercises</button>
             <button class="menu-btn" onclick="showSection('wrapup', this)">Wrap-up</button>
@@ -254,7 +276,7 @@
                         <div class="vocab-english">How have you been recently?</div>
                     </div>
                     <div class="vocab-card">
-                        <div class="vocab-pinyin">Hǎojiǔ bú jiàn!</div>
+                        <div class="vocab-pinyin">Hǎo jiǔ bú jiàn!</div>
                         <div class="vocab-english">Long time no see!</div>
                     </div>
                 </div>
@@ -511,8 +533,9 @@
                 </ul>
             </div>
 
-            <h2>C. Standard Responses</h2>
+            <h2>C. Standard Responses & Polite Extensions</h2>
 
+            <!-- Xièxie Dialogue -->
             <div class="dialogue-box">
                 <div class="dialogue-line">
                     <div class="speaker-badge">A</div>
@@ -535,13 +558,27 @@
                 </div>
             </div>
 
+            <!-- Extra Note on Xièxie -->
+            <div class="info-box" style="margin-top: -5px;">
+                <strong style="color: #b45309; font-size: 1.35rem;"> Addressing People with "Xièxie":</strong>
+                <p style="margin: 6px 0 0 0; line-height: 1.7;">
+                    You can specify who you are thanking by adding a person/pronoun directly after "Xièxie":
+                </p>
+                <ul style="margin: 5px 0 0 0; padding-left: 20px; line-height: 1.7;">
+                    <li><strong class="kw-pinyin">Xièxie nǐ.</strong> = Thank you (singular).</li>
+                    <li><strong class="kw-pinyin">Xièxie nǐmen.</strong> = Thank you all / everyone (plural).</li>
+                    <li><strong class="kw-pinyin">Xièxie lǎoshī.</strong> = Thank you, teacher.</li>
+                </ul>
+            </div>
+
+            <!-- Zàijiàn Dialogue -->
             <div class="dialogue-box">
                 <div class="dialogue-line">
                     <div class="speaker-badge">A</div>
                     <div class="dialogue-content">
                         <div class="dialogue-words">
-                            <div class="word-unit"><span class="w2w-text">again</span><span class="py-text">Zài</span></div>
-                            <div class="word-unit"><span class="w2w-text">see</span><span class="py-text">jiàn.</span></div>
+                            <div class="word-unit"><span class="w2w-text">lagi (again)</span><span class="py-text">Zài</span></div>
+                            <div class="word-unit"><span class="w2w-text">jumpa (see)</span><span class="py-text">jiàn.</span></div>
                         </div>
                         <div class="dialogue-english">(Goodbye.)</div>
                     </div>
@@ -550,14 +587,31 @@
                     <div class="speaker-badge alt">B</div>
                     <div class="dialogue-content">
                         <div class="dialogue-words">
-                            <div class="word-unit"><span class="w2w-text">again</span><span class="py-text">Zài</span></div>
-                            <div class="word-unit"><span class="w2w-text">see</span><span class="py-text">jiàn.</span></div>
+                            <div class="word-unit"><span class="w2w-text">lagi (again)</span><span class="py-text">Zài</span></div>
+                            <div class="word-unit"><span class="w2w-text">jumpa (see)</span><span class="py-text">jiàn.</span></div>
                         </div>
                         <div class="dialogue-english">(Goodbye.)</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Extra Note on Zàijiàn -->
+            <div class="info-box" style="margin-top: -5px;">
+                <strong style="color: #b45309; font-size: 1.35rem;"> Word Breakdown & Variations for "Zàijiàn":</strong>
+                <p style="margin: 6px 0 0 0; line-height: 1.7;">
+                    <strong>Zài</strong> (again / <em>lagi</em>) + <strong>jiàn</strong> (see / <em>jumpa</em>) literally means <em>"lagi jumpa / jumpa lagi"</em>!
+                </p>
+                <p style="margin: 6px 0 0 0; line-height: 1.7;">
+                    You can easily replace <strong>"zài"</strong> with specific time words using the formula: <strong>[Time Word] + jiàn</strong>!
+                </p>
+                <ul style="margin: 5px 0 0 0; padding-left: 20px; line-height: 1.7;">
+                    <li><strong class="kw-pinyin">Míngtiān jiàn!</strong> = See you tomorrow! (<em>Jumpa esok!</em>)</li>
+                    <li><strong class="kw-pinyin">Xīngqīsān jiàn!</strong> = See you on Wednesday! (<em>Jumpa hari Rabu!</em>)</li>
+                    <li><strong class="kw-pinyin">Xiàwǔ jiàn!</strong> = See you this afternoon! (<em>Jumpa petang nanti!</em>)</li>
+                </ul>
+            </div>
+
+            <!-- Duìbuqi Dialogue -->
             <div class="dialogue-box">
                 <div class="dialogue-line">
                     <div class="speaker-badge">A</div>
@@ -577,6 +631,25 @@
                         <div class="dialogue-english">(It's alright / Never mind.)</div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Apology Nuance Comparison Box -->
+            <div class="concept-box" style="margin-top: -5px;">
+                <h3 style="margin-top:0; color:var(--primary-dark);"> Apology Nuance: Duìbuqi vs. Bù hǎo yìsi vs. Bàoqiàn</h3>
+                <ul style="margin: 6px 0 0 0; padding-left: 20px; line-height: 1.8; font-size: 1.25rem;">
+                    <li>
+                        <strong class="kw-pinyin">Duìbuqi:</strong> <strong>"I'm sorry"</strong> (Standard, direct apology).
+                        <br><small style="color:#555;">Used when you made a clear mistake, caused hurt, or broke something (e.g., breaking a glass cup, stepping on someone's foot).</small>
+                    </li>
+                    <li style="margin-top: 8px;">
+                        <strong class="kw-pinyin">Bù hǎo yìsi:</strong> <strong>"Excuse me / Embarrassed / Slight apology"</strong>.
+                        <br><small style="color:#555;">Much milder, friendly, and extremely common! Used when squeezing through a crowd ("excuse me"), asking for a quick favor, or expressing modest bashfulness when someone treats you.</small>
+                    </li>
+                    <li style="margin-top: 8px;">
+                        <strong class="kw-pinyin">Bàoqiàn:</strong> <strong>"We apologize / Deep regret"</strong> (Formal).
+                        <br><small style="color:#555;">More formal and written. Commonly used in customer service, official letters, airline delay announcements, or business meetings.</small>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -670,14 +743,14 @@
             </div>
         </div>
 
-        <!-- Section 4: Locations & Rules -->
+        <!-- Section 4: Locations & Morphemes -->
         <div id="locations" class="section">
             <h1>
                 <span>3. About The Locations</span>
                 <span class="page-badge">KLXHY pg 21</span>
             </h1>
 
-            <h2>10 Core Location Vocabulary</h2>
+            <h2>10 Core Location Vocabulary & Morpheme Hacks</h2>
             <div class="vocab-grid">
                 <div class="vocab-card">
                     <div class="vocab-icon">🏠</div>
@@ -688,62 +761,56 @@
                     <div class="vocab-icon">🛏️</div>
                     <div class="vocab-pinyin">sùshè</div>
                     <div class="vocab-english">dormitory</div>
+                    <div class="vocab-morph">sù (stay/live) + shè (lodging)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">🏫</div>
                     <div class="vocab-pinyin">dàxué</div>
-                    <div class="vocab-english">university<br><small>(Shābā Dàxué)</small></div>
+                    <div class="vocab-english">university</div>
+                    <div class="vocab-morph">dà (big) + xué (school)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">📐</div>
                     <div class="vocab-pinyin">jiàoshì</div>
                     <div class="vocab-english">classroom</div>
+                    <div class="vocab-morph">jiào (teach) + shì (room)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">💼</div>
                     <div class="vocab-pinyin">bàngōngshì</div>
                     <div class="vocab-english">office</div>
+                    <div class="vocab-morph">bàngōng (work) + shì (room)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">🍽️</div>
                     <div class="vocab-pinyin">cāntīng</div>
                     <div class="vocab-english">restaurant</div>
+                    <div class="vocab-morph">cān (meal) + tīng (hall)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">📚</div>
                     <div class="vocab-pinyin">túshūguǎn</div>
                     <div class="vocab-english">library</div>
+                    <div class="vocab-morph">túshū (books) + guǎn (activity place/facility)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">🎬</div>
                     <div class="vocab-pinyin">diànyǐngyuàn</div>
                     <div class="vocab-english">cinema</div>
+                    <div class="vocab-morph">diànyǐng (movie) + yuàn (service/institution)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">🏥</div>
                     <div class="vocab-pinyin">yīyuàn</div>
                     <div class="vocab-english">hospital</div>
+                    <div class="vocab-morph">yī (medical) + yuàn (service/institution)</div>
                 </div>
                 <div class="vocab-card">
                     <div class="vocab-icon">🛍️</div>
                     <div class="vocab-pinyin">shāngchǎng</div>
                     <div class="vocab-english">shopping mall</div>
+                    <div class="vocab-morph">shāng (trade/business) + chǎng (area/space)</div>
                 </div>
-            </div>
-
-            <!-- Morpheme Breakdown Box -->
-            <div class="concept-box">
-                <h3 style="margin-top:0; color:var(--primary-dark);"> Word Hacks: Location Morpheme Breakdown</h3>
-                <p style="font-size: 1.25rem; margin-bottom: 12px;">Chinese words are built logically! Learn these common suffixes to recognize places instantly:</p>
-                <ul style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 0;">
-                    <li><strong>xué (学):</strong> Institution for learning & education &rarr; <em>dàxué</em> (university: big) | <em>zhōngxué</em> (secondary: middle) | <em>xiǎoxué</em> (primary: small).</li>
-                    <li><strong>shè (舍):</strong> Living quarters / lodging &rarr; <em>sùshè</em> (dormitory: <em>sù</em> = stay overnight).</li>
-                    <li><strong>shì (室):</strong> A functional room within a building &rarr; <em>jiàoshì</em> (classroom: <em>jiào</em> = teach) | <em>bàngōngshì</em> (office: <em>bàngōng</em> = work).</li>
-                    <li><strong>tīng (厅):</strong> A large hall or public dining space &rarr; <em>cāntīng</em> (restaurant: <em>cān</em> = meal).</li>
-                    <li><strong>guǎn (馆):</strong> A building/venue for collections or specific services &rarr; <em>túshūguǎn</em> (library: <em>túshū</em> = books) | <em>tǐyùguǎn</em> (gym/sports hall).</li>
-                    <li><strong>yuàn (院):</strong> A specialized establishment or institution &rarr; <em>yīyuàn</em> (hospital: <em>yī</em> = medical/healing) | <em>diànyǐngyuàn</em> (cinema: <em>diànyǐng</em> = movie).</li>
-                    <li><strong>chǎng (场):</strong> A large open venue, square, or market &rarr; <em>shāngchǎng</em> (shopping mall: <em>shāng</em> = commerce/trade).</li>
-                </ul>
             </div>
 
             <div class="grammar-card">
@@ -850,6 +917,7 @@
                         </div>
                         <div class="dialogue-english">(No, I'm not.)</div>
                         <span class="full-response-tag">Full Sentence: Wǒ bú zài dàxué.</span>
+                        <span class="full-response-tag" style="background:#ede9fe; color:#5b21b6;">We can also answer: Bú zài, wǒ zài sùshè. (No, I'm at the dormitory.)</span>
                         <span class="tone-reminder-badge">Tone Sandhi: "bù" &rarr; "bú" before 4th tone (zài)</span>
                     </div>
                 </div>
@@ -1103,7 +1171,7 @@
             </div>
         </div>
 
-        <!-- Section 7: Preferences & Verbs -->
+        <!-- Section 7: Preferences & Place Order -->
         <div id="preferences" class="section">
             <h1>
                 <span>6. Preferences & Action Verbs</span>
@@ -1206,6 +1274,65 @@
                         <span class="full-response-tag">Full Sentence: Wǒ bú yào hē kělè.</span>
                         <span class="tone-reminder-badge">Tone Sandhi: "bù" &rarr; "bú" before 4th tone (yào)</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Grammar Note: Color-Coded Syntax Table -->
+            <div class="grammar-card">
+                <h3 style="color: var(--primary-dark);"> Grammar Note: Place Word Position in Chinese</h3>
+                <p style="font-size: 1.3rem;">
+                    In Chinese, the <strong>Place (Location Phrase)</strong> MUST be placed <strong>BEFORE the action verb</strong>! <br>
+                    Place phrases are formed with <strong>zài</strong> (at), <strong>qù</strong> (go to), or <strong>huí</strong> (return to) + Location.
+                </p>
+
+                <!-- Color-Coded Formula Table -->
+                <table class="syntax-table">
+                    <tr>
+                        <th class="s-subj" style="width: 14%;">Subject (S)<br><small>(Siapa)</small></th>
+                        <th class="s-time" style="width: 16%;">Time<br><small>(Bila)</small></th>
+                        <th class="s-place" style="width: 26%;">Place Phrase<br><small>(zài / qù / huí + Location)</small></th>
+                        <th class="s-verb" style="width: 14%;">Verb (V)<br><small>(Buat)</small></th>
+                        <th class="s-obj" style="width: 15%;">Object (O)<br><small>(Apa)</small></th>
+                        <th style="width: 15%; background:#f1f5f9; color:#475569;">Meaning<br><small>(English)</small></th>
+                    </tr>
+                    <tr>
+                        <td><span class="syntax-pill p-subj">Wǒ</span></td>
+                        <td><span class="syntax-pill p-time">jīntiān</span></td>
+                        <td><span class="syntax-pill p-place">zài cāntīng</span></td>
+                        <td><span class="syntax-pill p-verb">chī</span></td>
+                        <td><span class="syntax-pill p-obj">hànbāo</span></td>
+                        <td style="font-size:1.05rem; text-align:left; color:#374151;">I eat hamburger at the restaurant today.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="syntax-pill p-subj">Wǒmen</span></td>
+                        <td><span class="syntax-pill p-time">míngtiān</span></td>
+                        <td><span class="syntax-pill p-place">qù diànyǐngyuàn</span></td>
+                        <td><span class="syntax-pill p-verb">kàn</span></td>
+                        <td><span class="syntax-pill p-obj">diànyǐng</span></td>
+                        <td style="font-size:1.05rem; text-align:left; color:#374151;">We go to the cinema to watch movie tomorrow.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="syntax-pill p-subj">Tā</span></td>
+                        <td><span class="syntax-pill p-time">xīngqīsān</span></td>
+                        <td><span class="syntax-pill p-place">huí jiā</span></td>
+                        <td><span class="syntax-pill p-verb">chī</span></td>
+                        <td><span class="syntax-pill p-obj">píngguǒ</span></td>
+                        <td style="font-size:1.05rem; text-align:left; color:#374151;">He returns home to eat apples on Wednesday.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="syntax-pill p-subj">Lǎoshī</span></td>
+                        <td><span class="syntax-pill p-time">sān diǎn</span></td>
+                        <td><span class="syntax-pill p-place">zài bàngōngshì</span></td>
+                        <td><span class="syntax-pill p-verb">hē</span></td>
+                        <td><span class="syntax-pill p-obj">kāfēi</span></td>
+                        <td style="font-size:1.05rem; text-align:left; color:#374151;">Teacher drinks coffee at the office at 3 o'clock.</td>
+                    </tr>
+                </table>
+
+                <div class="info-box" style="margin-top: 15px; margin-bottom: 0;">
+                    <strong style="color: #b45309;"> English vs. Chinese Word Order Pitfall:</strong>
+                    <br>&bull; English order: <em>"I eat hamburger <strong>at the restaurant</strong>"</em> (Action + Place).
+                    <br>&bull; Chinese order: <em>"Wǒ <strong>zài cāntīng</strong> chī hànbāo"</em> (<strong>Place + Action</strong>).
                 </div>
             </div>
         </div>
@@ -1603,21 +1730,75 @@
             </div>
         </div>
 
-        <!-- Section 10: Wrap-up -->
+        <!-- Section 10: Reorganized & Structured Wrap-up -->
         <div id="wrapup" class="section">
             <h1>
-                <span>9. Wrap-up</span>
+                <span>9. Lesson 4 Summary & Takeaways</span>
             </h1>
 
-            <div class="concept-box">
-                <h3 style="color: var(--primary-dark); margin-top:0;"> Core Lesson Summary:</h3>
-                <ul style="font-size: 1.4rem; line-height: 2;">
-                    <li><strong>Greetings & Responses:</strong> <em>Nǐ hǎo, Lǎoshī hǎo, Xièxie - Bú kèqi, Duìbuqi - Méi guānxi</em>.</li>
-                    <li><strong>Grammar Particles:</strong> <strong>"ma"</strong> for yes-no questions; <strong>"men"</strong> for plural people nouns.</li>
-                    <li><strong>Chinese Word Order:</strong> Subject + Verb + Object (S + V + O). Negation: <strong>S + bù/bú + V + O</strong>.</li>
-                    <li><strong>Locations Rule:</strong> Never say <em>"qù jiā"</em>; always say <strong>"huí jiā"</strong>! Use <strong>"qù"</strong> for external places.</li>
-                    <li><strong>5W1H Question Words:</strong> <strong>"nǎr / nǎlǐ"</strong> (where) and <strong>"shénme"</strong> (what). Do NOT add "ma"!</li>
-                </ul>
+            <div class="rule-grid" style="grid-template-columns: 1fr 1fr;">
+                
+                <!-- Takeaway Card 1 -->
+                <div class="grid-card" style="border-left-color: #2563eb;">
+                    <strong style="color: #2563eb; font-size: 1.45rem;"> 1. Everyday Greetings & Nuances</strong>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 1.15rem; line-height: 1.8;">
+                        <li><strong>Casual/Everyday:</strong> <em>Nǐ hǎo</em> (Hello), <em>Lǎoshī hǎo</em> (Hello teacher).</li>
+                        <li><strong>Time-Specific:</strong> <em>Zǎoshang hǎo</em> (Morning), <em>Xiàwǔ hǎo</em> (Afternoon), <em>Wǎnshang hǎo</em> (Evening).</li>
+                        <li><strong>Formal vs. Daily:</strong> <em>Zǎo'ān</em> is more formal/broadcast; <em>Wǎn'ān</em> strictly means "Good night / sleep well".</li>
+                        <li><strong>Responses & Extensions:</strong> 
+                            <br>&bull; <em>Xièxie (nǐ/nǐmen) &rarr; Bú kèqi</em>.
+                            <br>&bull; <em>Zàijiàn (Míngtiān/Xīngqīsān jiàn)</em>.
+                            <br>&bull; <em>Duìbuqi &rarr; Méi guānxi</em> (contrast with mild <em>Bù hǎo yìsi</em> & formal <em>Bàoqiàn</em>).
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Takeaway Card 2 -->
+                <div class="grid-card" style="border-left-color: #9333ea;">
+                    <strong style="color: #9333ea; font-size: 1.45rem;"> 2. Two Vital Grammar Particles</strong>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 1.15rem; line-height: 1.8;">
+                        <li><strong>Question Particle "ma":</strong>
+                            <br>&bull; Turns any statement into a yes-no question:
+                            <br>&bull; <em>(S + Adjective) + ma?</em> &rarr; <em>Nǐ hǎo ma?</em>
+                            <br>&bull; <em>(S + V + O) + ma?</em> &rarr; <em>Nǐ chī hànbāo ma?</em>
+                        </li>
+                        <li style="margin-top: 8px;"><strong>Plural Marker "men":</strong>
+                            <br>&bull; Exclusively for people/pronouns: <em>wǒmen</em> (we), <em>nǐmen</em> (you all), <em>tāmen</em> (they), <em>lǎoshīmen</em> (teachers).
+                            <br>&bull; Never used for objects, places, or animals!
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Takeaway Card 3 -->
+                <div class="grid-card" style="border-left-color: #059669;">
+                    <strong style="color: #059669; font-size: 1.45rem;"> 3. The Master Word Order Formula</strong>
+                    <div style="background: #ffffff; padding: 12px; border-radius: 8px; border: 2px dashed #059669; margin: 8px 0; font-size: 1.25rem; font-weight: bold; text-align: center;">
+                        <span style="color:#2563eb;">Subject</span> + 
+                        <span style="color:#9333ea;">Time</span> + 
+                        <span style="color:#059669;">Place (zài/qù/huí)</span> + 
+                        <span style="color:#d97706;">Verb</span> + 
+                        <span style="color:#e11d48;">Object</span>
+                    </div>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 1.15rem; line-height: 1.8;">
+                        <li><strong>Time Position:</strong> Must come before the verb (<em>S + Time + V</em> or <em>Time + S + V</em>).</li>
+                        <li><strong>Place Position:</strong> Always placed BEFORE the action verb! 
+                            <br>&bull; English: <em>I eat <strong>at restaurant</strong></em>.
+                            <br>&bull; Chinese: <em>Wǒ <strong>zài cāntīng</strong> chī</em>.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Takeaway Card 4 -->
+                <div class="grid-card" style="border-left-color: #dc2626;">
+                    <strong style="color: #dc2626; font-size: 1.45rem;"> 4. Four Critical Golden Rules</strong>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 1.15rem; line-height: 1.8;">
+                        <li><strong>Return Home:</strong> Never say <span style="text-decoration: line-through;">qù jiā</span>; ALWAYS say <strong>huí jiā</strong>! (Use <em>huí</em> for your own place, <em>qù</em> for other places).</li>
+                        <li><strong>"bù" Tone Sandhi:</strong> Changes to 2nd tone <strong>"bú"</strong> before a 4th tone syllable (<em>bú zài, bú qù, bú yào, bú kèqi</em>). Stays 4th tone <strong>"bù"</strong> before 1st/2nd/3rd tones (<em>bù chī, bù hē, bù huí jiā</em>).</li>
+                        <li><strong>Question Words:</strong> Never add "ma" when using <strong>nǎr / nǎlǐ</strong> (where) or <strong>shénme</strong> (what)!</li>
+                        <li><strong>Location Suffixes:</strong> Recognize building types by suffixes: <em>-xué, -shè, -shì, -tīng, -guǎn, -yuàn, -chǎng</em>.</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
